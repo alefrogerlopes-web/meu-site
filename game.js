@@ -9,7 +9,6 @@ let velocidade = 1.5;
 // Monstro
 let mobX = 500;
 let mobY = 250;
-let mobVivo = true;
 
 function game() {
 
@@ -20,8 +19,6 @@ function game() {
     ctx.fillRect(0, 0, 800, 500);
 
     // Movimento automático do herói
-    if (mobVivo) {
-
         if (x < mobX) x += velocidade;
         if (x > mobX) x -= velocidade;
 
