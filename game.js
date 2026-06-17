@@ -1,7 +1,7 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 
-// Heroína
+// Herói
 let x = 100;
 let y = 100;
 let velocidade = 1.5;
@@ -10,23 +10,15 @@ let velocidade = 1.5;
 let mobX = 500;
 let mobY = 250;
 
-// Carrega as imagens
-const paladina = new Image();
-paladina.src = "paladina.png";
-
-const monstro = new Image();
-monstro.src = "monstro.png";
-
 function game() {
 
-    // Limpa a tela
     ctx.clearRect(0, 0, 800, 500);
 
     // Chão
     ctx.fillStyle = "green";
     ctx.fillRect(0, 0, 800, 500);
 
-    // Movimento automático da paladina
+    // Movimento automático do herói
     if (x < mobX) x += velocidade;
     if (x > mobX) x -= velocidade;
 
@@ -38,17 +30,17 @@ function game() {
         Math.abs(x - mobX) < 40 &&
         Math.abs(y - mobY) < 40
     ) {
-
-        // Nasce outro monstro em posição aleatória
+        // Novo monstro em posição aleatória
         mobX = Math.random() * 700;
         mobY = Math.random() * 400;
     }
 
     // Desenha o monstro
-    ctx.drawImage(monstro, mobX, mobY, 60, 60);
+    ctx.font = "40px Arial";
+    ctx.fillText("👹", mobX, mobY + 35);
 
-    // Desenha a paladina
-    ctx.drawImage(paladina, x, y, 60, 60);
+    // Desenha o herói
+    ctx.fillText("🧙", x, y + 35);
 
     requestAnimationFrame(game);
 }
