@@ -27,14 +27,11 @@ function game() {
 
         // ataque automático
         if (
-            Math.abs(x - mobX) < 40 &&
-            Math.abs(y - mobY) < 40
-        ) {
-            mobX = Math.random() * 700;
-mobY = Math.random() * 400;
-        }
-    }
-
+    Math.abs(x - mobX) < 40 &&
+    Math.abs(y - mobY) < 40
+) {
+    mobVivo = false;
+}
 
     // Desenha o monstro
 if (mobVivo) {
