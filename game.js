@@ -9,7 +9,7 @@ let velocidade = 1.5;
 // Monstro
 let mobX = 500;
 let mobY = 250;
-let mobVivo = true;
+
 function game() {
 
     ctx.clearRect(0, 0, 800, 500);
@@ -19,26 +19,25 @@ function game() {
     ctx.fillRect(0, 0, 800, 500);
 
     // Movimento automático do herói
-        if (x < mobX) x += velocidade;
-        if (x > mobX) x -= velocidade;
+    if (x < mobX) x += velocidade;
+    if (x > mobX) x -= velocidade;
 
-        if (y < mobY) y += velocidade;
-        if (y > mobY) y -= velocidade;
+    if (y < mobY) y += velocidade;
+    if (y > mobY) y -= velocidade;
 
-        // ataque automático
-if (
-    Math.abs(x - mobX) < 40 &&
-    Math.abs(y - mobY) < 40
-) {
-    // cria outro monstro em posição aleatória
-    mobX = Math.random() * 700;
-    mobY = Math.random() * 400;
-}
+    // Ataque automático
+    if (
+        Math.abs(x - mobX) < 40 &&
+        Math.abs(y - mobY) < 40
+    ) {
+        // Novo monstro em posição aleatória
+        mobX = Math.random() * 700;
+        mobY = Math.random() * 400;
+    }
+
     // Desenha o monstro
-if (mobVivo) {
     ctx.fillStyle = "red";
     ctx.fillRect(mobX, mobY, 40, 40);
-}
 
     // Desenha o herói
     ctx.fillStyle = "blue";
