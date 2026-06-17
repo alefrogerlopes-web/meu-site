@@ -33,7 +33,8 @@ function game() {
             Math.abs(x - mobX) < 40 &&
             Math.abs(y - mobY) < 40
         ) {
-            mobVivo = false;
+            mobX = Math.random() * 700;
+mobY = Math.random() * 400;
         }
     }
 
