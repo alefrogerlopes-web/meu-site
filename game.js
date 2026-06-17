@@ -1,29 +1,51 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 
+// Herói
 let x = 100;
 let y = 100;
+let velocidade = 1.5;
 
-document.addEventListener("keydown", (e)=>{
+// Monstro
+let mobX = 500;
+let mobY = 250;
+let mobVivo = true;
 
-    if(e.key=="ArrowUp") y-=10;
-    if(e.key=="ArrowDown") y+=10;
-    if(e.key=="ArrowLeft") x-=10;
-    if(e.key=="ArrowRight") x+=10;
+function game() {
 
-});
-
-function game(){
-
-    ctx.clearRect(0,0,800,500);
+    ctx.clearRect(0, 0, 800, 500);
 
     // chão
-    ctx.fillStyle="green";
-    ctx.fillRect(0,0,800,500);
+    ctx.fillStyle = "green";
+    ctx.fillRect(0, 0, 800, 500);
 
-    // herói
-    ctx.fillStyle="blue";
-    ctx.fillRect(x,y,40,40);
+    // Movimento automático do herói
+    if (mobVivo) {
+
+        if (x < mobX) x += velocidade;
+        if (x > mobX) x -= velocidade;
+
+        if (y < mobY) y += velocidade;
+        if (y > mobY) y -= velocidade;
+
+        // ataque automático
+        if (
+            Math.abs(x - mobX) < 40 &&
+            Math.abs(y - mobY) < 40
+        ) {
+            mobVivo = false;
+        }
+    }
+
+    // Desenha o monstro
+    if (mobVivo) {
+        ctx.fillStyle = "red";
+        ctx.fillRect(mobX, mobY, 40, 40);
+    }
+
+    // Desenha o herói
+    ctx.fillStyle = "blue";
+    ctx.fillRect(x, y, 40, 40);
 
     requestAnimationFrame(game);
 }
