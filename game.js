@@ -52,10 +52,10 @@ document.addEventListener("keydown", (e) => {
     if (e.key === "v" && !velocidadeExtra) {
 
         velocidadeExtra = true;
-        velocidade += 2;
+        velocidade += 10;
 
         setTimeout(() => {
-            velocidade -= 2;
+            velocidade -= 11;
             velocidadeExtra = false;
         }, 5000);
     }
