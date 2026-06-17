@@ -9,7 +9,7 @@ let velocidade = 1.5;
 // Monstro
 let mobX = 500;
 let mobY = 250;
-
+let mobVivo = true;
 function game() {
 
     ctx.clearRect(0, 0, 800, 500);
