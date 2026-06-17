@@ -23,6 +23,9 @@ let bossVida = 500;
 let bossX = 600;
 let bossY = 250;
 
+// Aviso do Boss
+let avisoBoss = 0;
+
 // Poderes
 let fogoAtivo = false;
 let velocidadeExtra = false;
@@ -52,13 +55,14 @@ document.addEventListener("keydown", (e) => {
     if (e.key === "v" && !velocidadeExtra) {
 
         velocidadeExtra = true;
-        velocidade += 10;
+        velocidade += 2;
 
         setTimeout(() => {
-            velocidade -= 11;
+            velocidade -= 2;
             velocidadeExtra = false;
         }, 5000);
     }
+
 });
 
 function game() {
@@ -67,7 +71,12 @@ function game() {
     ctx.clearRect(0, 0, 800, 500);
 
     // Fundo
-    ctx.fillStyle = "green";
+    if (bossAtivo) {
+        ctx.fillStyle = "darkred";
+    } else {
+        ctx.fillStyle = "green";
+    }
+
     ctx.fillRect(0, 0, 800, 500);
 
     // Escolhe o alvo
@@ -132,6 +141,9 @@ function game() {
 
                 bossX = Math.random() * 700;
                 bossY = Math.random() * 400;
+
+                // Aviso do Boss
+                avisoBoss = 180;
             }
 
             // Subir de nível
@@ -166,7 +178,7 @@ function game() {
     ctx.fillText("❤️ C = Cura", 20, 250);
     ctx.fillText("⚡ V = Super Velocidade", 20, 280);
 
-    // Avisos
+    // Avisos dos poderes
     if (fogoAtivo) {
         ctx.fillText("🔥 FOGO ATIVO", 550, 40);
     }
@@ -175,19 +187,38 @@ function game() {
         ctx.fillText("⚡ VELOCIDADE EXTRA", 550, 70);
     }
 
+    // Aviso do Boss
+    if (avisoBoss > 0) {
+
+        avisoBoss--;
+
+        ctx.fillStyle = "yellow";
+        ctx.font = "40px Arial";
+        ctx.fillText(
+            "⚠️ SUPER BOSS APARECEU! ⚠️",
+            120,
+            250
+        );
+    }
+
     // Desenhar Boss ou monstro
     if (bossAtivo) {
 
-        ctx.font = "50px Arial";
-        ctx.fillText("👹👑", bossX, bossY + 40);
+        ctx.font = "60px Arial";
+        ctx.fillText("🐉👑", bossX, bossY + 50);
 
         ctx.font = "20px Arial";
-        ctx.fillText("❤️ Boss: " + bossVida, bossX - 20, bossY - 10);
+        ctx.fillText(
+            "❤️ Boss: " + bossVida,
+            bossX - 20,
+            bossY - 10
+        );
 
     } else {
 
         ctx.font = "40px Arial";
         ctx.fillText("👹", mobX, mobY + 35);
+
     }
 
     // Herói
