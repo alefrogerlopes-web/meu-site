@@ -35,11 +35,12 @@ mobY = Math.random() * 400;
         }
     }
 
+
     // Desenha o monstro
-    if (mobVivo) {
-        ctx.fillStyle = "red";
-        ctx.fillRect(mobX, mobY, 40, 40);
-    }
+if (mobVivo) {
+    ctx.fillStyle = "red";
+    ctx.fillRect(mobX, mobY, 40, 40);
+}
 
     // Desenha o herói
     ctx.fillStyle = "blue";
