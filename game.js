@@ -25,12 +25,11 @@ function game() {
     if (y < mobY) y += velocidade;
     if (y > mobY) y -= velocidade;
 
-    // Ataque automático
+    // Mata o monstro e nasce outro em posição aleatória
     if (
         Math.abs(x - mobX) < 40 &&
         Math.abs(y - mobY) < 40
     ) {
-        // Novo monstro em posição aleatória
         mobX = Math.random() * 700;
         mobY = Math.random() * 400;
     }
