@@ -63,14 +63,14 @@ document.addEventListener("keydown", (e) => {
 
 function game() {
 
-    // Limpar tela
+    // Limpa a tela
     ctx.clearRect(0, 0, 800, 500);
 
     // Fundo
     ctx.fillStyle = "green";
     ctx.fillRect(0, 0, 800, 500);
 
-    // Escolher alvo
+    // Escolhe o alvo
     let alvoX = bossAtivo ? bossX : mobX;
     let alvoY = bossAtivo ? bossY : mobY;
 
@@ -122,22 +122,23 @@ function game() {
                 ouro += 5;
             }
 
+            // Boss a cada 5 monstros mortos
+            if (monstrosMortos % 5 === 0) {
+
+                bossAtivo = true;
+
+                // Boss mais forte a cada aparição
+                bossVida = 500 + ((monstrosMortos / 5) - 1) * 500;
+
+                bossX = Math.random() * 700;
+                bossY = Math.random() * 400;
+            }
+
             // Subir de nível
             if (xp >= nivel * 100) {
-
                 nivel++;
                 velocidade += 0.2;
                 vida = 100;
-
-                // Boss a cada 10 níveis
-                if (nivel % 10 === 0) {
-
-                    bossAtivo = true;
-                    bossVida = 500;
-
-                    bossX = Math.random() * 700;
-                    bossY = Math.random() * 400;
-                }
             }
 
             // Novo monstro
@@ -174,16 +175,14 @@ function game() {
         ctx.fillText("⚡ VELOCIDADE EXTRA", 550, 70);
     }
 
-    // Boss ou monstro
-    ctx.font = "40px Arial";
-
+    // Desenhar Boss ou monstro
     if (bossAtivo) {
 
         ctx.font = "50px Arial";
         ctx.fillText("👹👑", bossX, bossY + 40);
 
         ctx.font = "20px Arial";
-        ctx.fillText("❤️ Boss: " + bossVida, bossX - 10, bossY - 10);
+        ctx.fillText("❤️ Boss: " + bossVida, bossX - 20, bossY - 10);
 
     } else {
 
