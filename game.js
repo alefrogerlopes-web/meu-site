@@ -11,6 +11,7 @@ let vida = 100;
 let xp = 0;
 let nivel = 1;
 let ouro = 0;
+let monstrosMortos = 0;
 
 // Monstro
 let mobX = 500;
@@ -38,15 +39,15 @@ function game() {
         Math.abs(y - mobY) < 40
     ) {
 
-        // Ganha experiência e ouro
+        // Recompensas
         xp += 10;
         ouro += 5;
+        monstrosMortos++;
 
-        // Sobe de nível
+        // Subir de nível
         if (xp >= nivel * 100) {
             nivel++;
             velocidade += 0.2;
-            vida = 100;
         }
 
         // Novo monstro em posição aleatória
@@ -58,13 +59,14 @@ function game() {
     ctx.fillStyle = "red";
     ctx.fillRect(20, 20, vida * 2, 20);
 
-    // Informações do herói
+    // Informações do personagem
     ctx.fillStyle = "white";
     ctx.font = "18px Arial";
     ctx.fillText("❤️ Vida: " + vida, 20, 60);
     ctx.fillText("⭐ XP: " + xp, 20, 90);
     ctx.fillText("📈 Nível: " + nivel, 20, 120);
     ctx.fillText("🪙 Ouro: " + ouro, 20, 150);
+    ctx.fillText("☠️ Monstros mortos: " + monstrosMortos, 20, 180);
 
     // Monstro
     ctx.font = "40px Arial";
